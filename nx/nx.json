@@ -19,6 +19,9 @@
     },
     "reactapp-e2e": {
       "tags": []
+    },
+    "ui": {
+      "tags": []
     }
   }
 }
