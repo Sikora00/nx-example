@@ -14,7 +14,7 @@ export const App = () => {
           </li>
         </ul>
         <header style={{ textAlign: 'center' }}>
-          <nx-greeting title={'Welcome to reactapp!'} />
+          <nx-greeting title={'reactapp!'} />
           <img
             width="450"
             src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png"
