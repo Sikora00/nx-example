@@ -26,9 +26,7 @@
               "apps/angularapp/src/favicon.ico",
               "apps/angularapp/src/assets"
             ],
-            "styles": [
-              "apps/angularapp/src/styles.scss"
-            ],
+            "styles": ["apps/angularapp/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -83,9 +81,7 @@
               "apps/angularapp/tsconfig.app.json",
               "apps/angularapp/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -142,9 +138,7 @@
               "apps/reactapp/src/favicon.ico",
               "apps/reactapp/src/assets"
             ],
-            "styles": [
-              "apps/reactapp/src/styles.scss"
-            ],
+            "styles": ["apps/reactapp/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -190,9 +184,7 @@
               "apps/reactapp/tsconfig.app.json",
               "apps/reactapp/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -243,9 +235,7 @@
               "libs/ui/tsconfig.lib.json",
               "libs/ui/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -270,9 +260,7 @@
             "outputPath": "dist/apps/nest/api",
             "main": "apps/nest/api/src/main.ts",
             "tsConfig": "apps/nest/api/tsconfig.app.json",
-            "assets": [
-              "apps/nest/api/src/assets"
-            ]
+            "assets": ["apps/nest/api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -301,9 +289,7 @@
               "apps/nest/api/tsconfig.app.json",
               "apps/nest/api/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -311,6 +297,31 @@
           "options": {
             "jestConfig": "apps/nest/api/jest.config.js",
             "tsConfig": "apps/nest/api/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "data": {
+      "root": "libs/data",
+      "sourceRoot": "libs/data/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/data/tsconfig.lib.json",
+              "libs/data/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/data/jest.config.js",
+            "tsConfig": "libs/data/tsconfig.spec.json"
           }
         }
       }
