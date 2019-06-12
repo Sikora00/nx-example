@@ -26,7 +26,9 @@
               "apps/angularapp/src/favicon.ico",
               "apps/angularapp/src/assets"
             ],
-            "styles": ["apps/angularapp/src/styles.scss"],
+            "styles": [
+              "apps/angularapp/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -59,7 +61,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angularapp:build"
+            "browserTarget": "angularapp:build",
+            "proxyConfig": "apps/angularapp/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -80,7 +83,9 @@
               "apps/angularapp/tsconfig.app.json",
               "apps/angularapp/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -137,7 +142,9 @@
               "apps/reactapp/src/favicon.ico",
               "apps/reactapp/src/assets"
             ],
-            "styles": ["apps/reactapp/src/styles.scss"],
+            "styles": [
+              "apps/reactapp/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -183,7 +190,9 @@
               "apps/reactapp/tsconfig.app.json",
               "apps/reactapp/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -234,7 +243,9 @@
               "libs/ui/tsconfig.lib.json",
               "libs/ui/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**"]
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         },
         "test": {
@@ -242,6 +253,64 @@
           "options": {
             "jestConfig": "libs/ui/jest.config.js",
             "tsConfig": "libs/ui/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "nest-api": {
+      "root": "apps/nest/api",
+      "sourceRoot": "apps/nest/api/src",
+      "projectType": "application",
+      "prefix": "nest-api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/nest/api",
+            "main": "apps/nest/api/src/main.ts",
+            "tsConfig": "apps/nest/api/tsconfig.app.json",
+            "assets": [
+              "apps/nest/api/src/assets"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/nest/api/src/environments/environment.ts",
+                  "with": "apps/nest/api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "nest-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/nest/api/tsconfig.app.json",
+              "apps/nest/api/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/nest/api/jest.config.js",
+            "tsConfig": "apps/nest/api/tsconfig.spec.json"
           }
         }
       }
