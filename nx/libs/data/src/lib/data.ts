@@ -1,3 +1,5 @@
-export interface Todo {
+
+export interface ToDo {
+  id: string;
   title: string;
 }

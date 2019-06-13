@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Todo } from '@nx/data';
+import { ToDo } from '@nx/data';
+import { ToDoFacade } from './+state/to-do.facade';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'nx-root',
@@ -9,19 +10,13 @@ import { Todo } from '@nx/data';
 })
 export class AppComponent {
   title = 'angularapp';
-  todos: Todo[] = [{ title: 'Todo 1' }, { title: 'Todo 2' }];
+  todos: Observable<ToDo[]> = this.toDoFacade.allToDo$;
 
-  constructor(private http: HttpClient) {
-    this.fetch();
+  constructor(private toDoFacade: ToDoFacade) {
+    this.toDoFacade.loadAll();
   }
 
-  fetch() {
-    this.http.get<Todo[]>('/api/todos').subscribe(t => (this.todos = t));
-  }
-
-  addTodo() {
-    this.http.post('/api/addTodo', {}).subscribe(() => {
-      this.fetch();
-    });
+  addTodo(): void {
+    this.toDoFacade.addTodo();
   }
 }

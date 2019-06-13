@@ -30,6 +30,9 @@
     },
     "data": {
       "tags": ["shared:typescript"]
+    },
+    "utils": {
+      "tags": ["shared:typescript"]
     }
   }
 }

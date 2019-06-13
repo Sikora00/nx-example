@@ -27,7 +27,7 @@
 <h2>Todos</h2>
 
 <ul>
-  <li *ngFor="let t of todos" class="todo">{{ t.title }}</li>
+  <li *ngFor="let t of todos | async" class="todo">{{ t.title }}</li>
 </ul>
 
 <button id="add-todo" (click)="addTodo()">Add Todo</button>

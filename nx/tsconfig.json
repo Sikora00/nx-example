@@ -17,7 +17,8 @@
     "baseUrl": ".",
     "paths": {
       "@nx/ui": ["libs/ui/src/index.ts"],
-      "@nx/data": ["libs/data/src/index.ts"]
+      "@nx/data": ["libs/data/src/index.ts"],
+      "@nx/utils": ["libs/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
