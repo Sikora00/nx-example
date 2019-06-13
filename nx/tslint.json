@@ -60,7 +60,7 @@
             "onlyDependOnLibsWithTags": [
               "angular:core",
               "shared:front",
-              "shared: typescript"
+              "shared:typescript"
             ]
           },
           {
