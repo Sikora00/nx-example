@@ -56,8 +56,24 @@
         "allow": [],
         "depConstraints": [
           {
-            "sourceTag": "*",
-            "onlyDependOnLibsWithTags": ["*"]
+            "sourceTag": "angular:core",
+            "onlyDependOnLibsWithTags": [
+              "angular:core",
+              "shared:front",
+              "shared: typescript"
+            ]
+          },
+          {
+            "sourceTag": "react:core",
+            "onlyDependOnLibsWithTags": [
+              "react:core",
+              "shared:front",
+              "shared:typerscript"
+            ]
+          },
+          {
+            "sourceTag": "nest:core",
+            "onlyDependOnLibsWithTags": ["nest:core", "shared:typescript"]
           }
         ]
       }

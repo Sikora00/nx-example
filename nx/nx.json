@@ -9,25 +9,27 @@
   },
   "projects": {
     "angularapp-e2e": {
-      "tags": []
+      "tags": ["angular:test"],
+      "implicitDependencies": ["angularapp"]
     },
     "angularapp": {
-      "tags": []
+      "tags": ["angular:core"]
     },
     "reactapp": {
-      "tags": []
+      "tags": ["react:core"]
     },
     "reactapp-e2e": {
-      "tags": []
+      "tags": ["react:test"],
+      "implicitDependencies": ["reactapp"]
     },
     "ui": {
-      "tags": []
+      "tags": ["shared:front"]
     },
     "nest-api": {
-      "tags": []
+      "tags": ["nest:core"]
     },
     "data": {
-      "tags": []
+      "tags": ["shared:typescript"]
     }
   }
 }
