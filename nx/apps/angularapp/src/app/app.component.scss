@@ -1,0 +1,44 @@
+::ng-deep {
+  eisenhower-matrix-header {
+    h1 {
+      color: #666666;
+      font-weight: 500;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 52px;
+      margin: auto;
+      width: 50%;
+      text-align: center;
+    }
+  }
+}
+
+.matrix {
+  width: 100%;
+  height: 50vh;
+  display: grid;
+  grid-template: 1fr 1fr / 1fr 1fr;
+}
+
+.matrix-column {
+  border-radius: 25px;
+}
+
+#do {
+  margin: 0 5px 5px 0;
+  background-color: #99cb1c;
+}
+
+#schedule {
+  margin: 0 0 5px 5px;
+  background-color: #4488ef;
+}
+
+#delegate {
+  margin: 5px 5px 0 0;
+  background-color: #f5a932;
+}
+
+#eliminate {
+  margin: 5px 0 0 5px;
+  background-color: #cc3b28;
+}
