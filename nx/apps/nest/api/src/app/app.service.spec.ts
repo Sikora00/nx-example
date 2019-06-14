@@ -15,7 +15,14 @@ describe('AppService', () => {
 
   describe('getData', () => {
     it('should return todos', () => {
-      expect(service.getData()).toEqual([{"title": "Todo 1"}, {"title": "Todo 2"}]);
+      expect(service.getData().length).toBe(2);
     });
   });
+
+  describe('addToDo', () => {
+    it('should add ToDo', () => {
+      service.addTodo();
+      expect(service.getData().length).toBe(3);
+    })
+  })
 });

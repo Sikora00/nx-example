@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { readFirst } from '@nrwl/angular/testing';
-
 import { EffectsModule } from '@ngrx/effects';
-import { StoreModule, Store } from '@ngrx/store';
-
+import { Store, StoreModule } from '@ngrx/store';
 import { NxModule } from '@nrwl/angular';
+import { readFirst } from '@nrwl/angular/testing';
+import { ToDo } from '@nx/data';
 
+import { ToDoLoaded } from './to-do.actions';
 import { ToDoEffects } from './to-do.effects';
 import { ToDoFacade } from './to-do.facade';
-
-import { toDoQuery } from './to-do.selectors';
-import { LoadToDo, ToDoLoaded } from './to-do.actions';
-import { ToDoState, Entity, initialState, toDoReducer } from './to-do.reducer';
+import { initialState, toDoReducer, ToDoState } from './to-do.reducer';
+import { HttpClientModule } from '@angular/common/http';
 
 interface TestSchema {
   toDo: ToDoState;
@@ -24,9 +22,9 @@ describe('ToDoFacade', () => {
   let createToDo;
 
   beforeEach(() => {
-    createToDo = (id: string, name = ''): Entity => ({
+    createToDo = (id: string, title = ''): ToDo => ({
       id,
-      name: name || `name-${id}`
+      title: title || `title-${id}`
     });
   });
 
@@ -46,7 +44,8 @@ describe('ToDoFacade', () => {
           NxModule.forRoot(),
           StoreModule.forRoot({}),
           EffectsModule.forRoot([]),
-          CustomFeatureModule
+          CustomFeatureModule,
+          HttpClientModule
         ]
       })
       class RootModule {}
@@ -73,7 +72,7 @@ describe('ToDoFacade', () => {
         isLoaded = await readFirst(facade.loaded$);
 
         expect(list.length).toBe(0);
-        expect(isLoaded).toBe(true);
+        expect(isLoaded).toBe(false);
 
         done();
       } catch (err) {

@@ -12,9 +12,6 @@ export const TODO_FEATURE_KEY = 'toDo';
  *  Note: replace if already defined in another module
  */
 
-/* tslint:disable:no-empty-interface */
-export interface Entity extends ToDo {}
-
 export interface ToDoState extends EntityState<ToDo> {
   selectedId?: string | number; // which ToDo record has been selected
   loaded: boolean; // has the ToDo list been loaded
@@ -38,8 +35,12 @@ export function toDoReducer(
   action: ToDoAction
 ): ToDoState {
   switch (action.type) {
+    case ToDoActionTypes.LoadToDo: {
+      state = adapter.removeAll({ ...state, loaded: false });
+      break;
+    }
     case ToDoActionTypes.ToDoLoaded: {
-      state = adapter.addAll(action.payload, state)
+      state = adapter.addAll(action.payload, { ...state, loaded: true });
       break;
     }
   }

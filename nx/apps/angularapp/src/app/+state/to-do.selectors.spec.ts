@@ -1,5 +1,5 @@
-import { Entity, ToDoState } from './to-do.reducer';
 import { toDoQuery } from './to-do.selectors';
+import { ToDo } from '@nx/data';
 
 describe('ToDo Selectors', () => {
   const ERROR_MSG = 'No Error Available';
@@ -8,18 +8,19 @@ describe('ToDo Selectors', () => {
   let storeState;
 
   beforeEach(() => {
-    const createToDo = (id: string, name = ''): Entity => ({
+    const createToDo = (id: string, title = ''): ToDo => ({
       id,
-      name: name || `name-${id}`
+      title: name || `name-${id}`
     });
+    const ids = ['AAA', 'BBB', 'CCC'];
     storeState = {
       toDo: {
-        list: [
-          createToDo('PRODUCT-AAA'),
-          createToDo('PRODUCT-BBB'),
-          createToDo('PRODUCT-CCC')
-        ],
-        selectedId: 'PRODUCT-BBB',
+        ids,
+        entities: ids.reduce((map, id) => {
+          map[id] = createToDo(id);
+          return map;
+        }, {}),
+        selectedId: 'BBB',
         error: ERROR_MSG,
         loaded: true
       }
@@ -32,14 +33,14 @@ describe('ToDo Selectors', () => {
       const selId = getToDoId(results[1]);
 
       expect(results.length).toBe(3);
-      expect(selId).toBe('PRODUCT-BBB');
+      expect(selId).toBe('BBB');
     });
 
     it('getSelectedToDo() should return the selected Entity', () => {
       const result = toDoQuery.getSelectedToDo(storeState);
       const selId = getToDoId(result);
 
-      expect(selId).toBe('PRODUCT-BBB');
+      expect(selId).toBe('BBB');
     });
 
     it("getLoaded() should return the current 'loaded' status", () => {

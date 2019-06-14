@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Effect, Actions } from '@ngrx/effects';
+import { Effect, Actions, ofType } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/angular';
-import { map } from 'rxjs/operators';
+import { map, switchMap, delay } from 'rxjs/operators';
 
 import { ToDoPartialState, ToDoState } from './to-do.reducer';
 import {
@@ -13,6 +13,7 @@ import {
   AddToDoSuccess
 } from './to-do.actions';
 import { BackendService } from '../services/backend.service';
+import { EMPTY, of } from 'rxjs';
 
 @Injectable()
 export class ToDoEffects {

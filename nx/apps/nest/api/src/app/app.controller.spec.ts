@@ -16,7 +16,7 @@ describe('AppController', () => {
   describe('getData', () => {
     it('should return todos', () => {
       const appController = app.get<AppController>(AppController);
-      expect(appController.getData()).toEqual([{"title": "Todo 1"}, {"title": "Todo 2"}]);
+      expect(appController.getData().length).toBe(2);
     });
   });
 });

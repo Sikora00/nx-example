@@ -13,7 +13,7 @@ export class AppService {
     return this.todos;
   }
 
-  addTodo() {
+  addTodo(): void {
     this.todos.push({
       id: uuid(),
       title: `New todo ${Math.floor(Math.random() * 1000)}`

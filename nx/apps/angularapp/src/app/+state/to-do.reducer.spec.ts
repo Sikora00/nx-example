@@ -1,14 +1,14 @@
 import { ToDoLoaded } from './to-do.actions';
-import { ToDoState, Entity, initialState, toDoReducer } from './to-do.reducer';
+import { ToDoState, initialState, toDoReducer } from './to-do.reducer';
+import { ToDo } from '@nx/data';
 
 describe('ToDo Reducer', () => {
-  const getToDoId = it => it['id'];
   let createToDo;
 
   beforeEach(() => {
-    createToDo = (id: string, name = ''): Entity => ({
+    createToDo = (id: string, title = ''): ToDo => ({
       id,
-      name: name || `name-${id}`
+       title: title || `name-${id}`
     });
   });
 
@@ -16,12 +16,13 @@ describe('ToDo Reducer', () => {
     it('should return set the list of known ToDo', () => {
       const toDos = [createToDo('PRODUCT-AAA'), createToDo('PRODUCT-zzz')];
       const action = new ToDoLoaded(toDos);
-      const result: ToDoState = toDoReducer(initialState, action);
-      const selId: string = getToDoId(result.list[1]);
+      const state: ToDoState = toDoReducer(initialState, action);
+      const selId = 'PRODUCT-zzz';
 
-      expect(result.loaded).toBe(true);
-      expect(result.list.length).toBe(2);
-      expect(selId).toBe('PRODUCT-zzz');
+      expect(state.loaded).toBe(true);
+      expect(state.ids.length).toBe(2);
+      expect(Object.keys(state.entities).length).toBe(2);
+      expect(state.entities[selId]).toBeTruthy();
     });
   });
 
