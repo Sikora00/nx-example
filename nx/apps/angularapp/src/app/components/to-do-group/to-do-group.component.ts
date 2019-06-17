@@ -10,6 +10,7 @@ import {
 import { Observable } from 'rxjs';
 import { ToDoGroup, ToDo } from '@nx/data';
 import { uuid } from '@nx/utils';
+import { toDoQuery } from '../../+state/to-do.selectors';
 
 @Component({
   selector: 'nx-to-do-group',
@@ -26,12 +27,25 @@ export class ToDoGroupComponent {
   @Output()
   addToDo: EventEmitter<ToDo> = new EventEmitter<ToDo>();
 
+  @Output()
+  updateToDo = new EventEmitter<ToDo>();
+
   constructor() {}
 
   addTask(value: string): void {
     if (value) {
-      this.addToDo.emit({ id: uuid(), title: value, group: this.group.id });
+      this.addToDo.emit({
+        id: uuid(),
+        done: false,
+        title: value,
+        group: this.group.id
+      });
       this.addTaskInput.nativeElement.value = '';
     }
+  }
+
+
+  onUpdateToDo(event: ToDo): void {
+    this.updateToDo.emit(event);
   }
 }

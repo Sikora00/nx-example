@@ -24,8 +24,12 @@
   position: absolute;
   overflow-y: scroll;
   right: -17px;
-  left: 0px;
+  left: 20px;
   height: 100%;
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
 }
 
 .matrix__element__add-new-task {
@@ -36,6 +40,7 @@
     font-size: 16px;
     font-family: 'Times New Roman', Times, serif;
     padding-left: 5px;
+    width: 90%
   }
   span {
     font-weight: 900;

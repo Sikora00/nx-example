@@ -19,9 +19,10 @@ import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { storeFreeze } from 'ngrx-store-freeze';
 import { ToDoGroupComponent } from './components/to-do-group/to-do-group.component';
+import { TaskComponent } from './components/task/task.component';
 
 @NgModule({
-  declarations: [AppComponent, ToDoGroupComponent],
+  declarations: [AppComponent, ToDoGroupComponent, TaskComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabled' }),

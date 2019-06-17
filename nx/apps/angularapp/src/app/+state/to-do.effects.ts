@@ -10,7 +10,8 @@ import {
   ToDoLoadError,
   ToDoActionTypes,
   AddToDo,
-  AddToDoSuccess
+  AddToDoSuccess,
+  UpdateToDo
 } from './to-do.actions';
 import { BackendService } from '../services/backend.service';
 import { EMPTY, of } from 'rxjs';
@@ -21,7 +22,9 @@ export class ToDoEffects {
     ToDoActionTypes.AddToDo,
     {
       run: (action: AddToDo, state: ToDoPartialState) => {
-        return this.backend.addToDo(action.payload).pipe(map(created => new LoadToDo()));
+        return this.backend
+          .addToDo(action.payload)
+          .pipe(map(created => new LoadToDo()));
       },
       onError: (a: AddToDo, e: any) => null
     }
@@ -37,6 +40,18 @@ export class ToDoEffects {
       return new ToDoLoadError(error);
     }
   });
+
+  @Effect() updateToDo$ = this.dataPersistence.pessimisticUpdate(
+    ToDoActionTypes.UpdateToDo,
+    {
+      run: (action: UpdateToDo, state: ToDoPartialState) => {
+        return this.backend
+          .updateToDo(action.paylaod)
+          .pipe(map(res => new LoadToDo()));
+      },
+      onError: (a: UpdateToDo, e: any) => null
+    }
+  );
 
   constructor(
     private actions$: Actions,

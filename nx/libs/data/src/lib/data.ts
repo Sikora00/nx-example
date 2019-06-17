@@ -1,14 +1,15 @@
 import { Dictionary } from '@ngrx/entity';
 
 export interface ToDo {
-  id: string;
+  readonly id: string;
   title: string;
-  group?: ToDoGroupId;
+  done: boolean;
+  group: ToDoGroupId;
 }
 
 export interface ToDoGroup {
   toDo: ToDo[];
-  id: ToDoGroupId;
+  readonly id: ToDoGroupId;
 }
 
 export enum ToDoGroupId {

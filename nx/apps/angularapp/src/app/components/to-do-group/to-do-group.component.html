@@ -3,13 +3,19 @@
     <div class="matrix__element__list-wrapper">
       <div class="matrix__element__list">
         <ul>
-          <li *ngFor="let t of group?.toDo" class="todo">{{ t.title }}</li>
+          <nx-task
+            *ngFor="let t of group?.toDo"
+            [task]="t"
+            (doTask)="onUpdateToDo($event)"
+          >
+          </nx-task>
         </ul>
       </div>
     </div>
     <div class="matrix__element__add-new-task">
       <span>+</span>
-      <input #addTaskInputElement
+      <input
+        #addTaskInputElement
         (keyup.enter)="addTask(addTaskInputElement.value)"
         type="text"
         placeholder="New task"

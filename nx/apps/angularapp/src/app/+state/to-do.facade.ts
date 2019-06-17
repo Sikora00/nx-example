@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 
 import { ToDoPartialState } from './to-do.reducer';
 import { toDoQuery } from './to-do.selectors';
-import { LoadToDo, AddToDo } from './to-do.actions';
+import { LoadToDo, AddToDo, UpdateToDo } from './to-do.actions';
 import { ToDo } from '@nx/data';
 
 @Injectable()
@@ -25,5 +25,9 @@ export class ToDoFacade {
 
   loadAll(): void {
     this.store.dispatch(new LoadToDo());
+  }
+
+  updateToDo(toDo: ToDo): void {
+    this.store.dispatch(new UpdateToDo(toDo));
   }
 }

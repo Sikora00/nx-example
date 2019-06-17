@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Put } from '@nestjs/common';
 import { mapToObj } from '@nx/utils';
 import { AppService } from './app.service';
 import { ToDo } from '@nx/data';
@@ -15,5 +15,10 @@ export class AppController {
   @Post('addTodo')
   addTodo(@Body() todo: ToDo): any {
     return this.appService.addToDo(todo);
+  }
+
+  @Put('todo')
+  updateToDo(@Body() todo: ToDo): any {
+    return this.appService.updateToDo(todo);
   }
 }
