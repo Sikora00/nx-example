@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { TODO_FEATURE_KEY, ToDoState } from './to-do.reducer';
 import { adapter } from './to-do.reducer';
+import { ToDoGroupId } from '@nx/data';
 
 // Lookup the 'ToDo' feature state managed by NgRx
 const getToDoState = createFeatureSelector<ToDoState>(TODO_FEATURE_KEY);
@@ -9,7 +10,7 @@ const {
   selectIds,
   selectEntities,
   selectAll,
-  selectTotal,
+  selectTotal
 } = adapter.getSelectors();
 
 const getLoaded = createSelector(
@@ -21,13 +22,36 @@ const getError = createSelector(
   (state: ToDoState) => state.error
 );
 
-const getAllToDo = createSelector(getToDoState, selectAll);
+const getAllToDoGroups = createSelector(
+  getToDoState,
+  selectAll
+);
+const getGroups = createSelector(
+  getToDoState,
+  state => state.entities
+);
+const getDoGroup = createSelector(
+  getGroups,
+  groups => groups[ToDoGroupId.do]
+);
+const getScheduleGroup = createSelector(
+  getGroups,
+  groups => groups[ToDoGroupId.schedule]
+);
+const getDelegateGroup = createSelector(
+  getGroups,
+  groups => groups[ToDoGroupId.delegate]
+);
+const getEliminateGroup = createSelector(
+  getGroups,
+  groups => groups[ToDoGroupId.elimminate]
+);
 const getSelectedId = createSelector(
   getToDoState,
   (state: ToDoState) => state.selectedId
 );
 const getSelectedToDo = createSelector(
-  getAllToDo,
+  getAllToDoGroups,
   getSelectedId,
   (toDo, id) => {
     const result = toDo.find(it => it['id'] === id);
@@ -38,6 +62,10 @@ const getSelectedToDo = createSelector(
 export const toDoQuery = {
   getLoaded,
   getError,
-  getAllToDo,
+  getAllToDoGroups,
+  getDoGroup,
+  getScheduleGroup,
+  getDelegateGroup,
+  getEliminateGroup,
   getSelectedToDo
 };

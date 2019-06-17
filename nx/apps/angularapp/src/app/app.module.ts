@@ -18,10 +18,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { storeFreeze } from 'ngrx-store-freeze';
-import { MatrixElementComponent } from './components/matrix-element/matrix-element.component';
+import { ToDoGroupComponent } from './components/to-do-group/to-do-group.component';
 
 @NgModule({
-  declarations: [AppComponent, MatrixElementComponent],
+  declarations: [AppComponent, ToDoGroupComponent],
   imports: [
     BrowserModule,
     RouterModule.forRoot([], { initialNavigation: 'enabled' }),

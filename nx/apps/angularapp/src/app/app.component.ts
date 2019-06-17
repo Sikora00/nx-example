@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { ToDo } from '@nx/data';
-import { ToDoFacade } from './+state/to-do.facade';
+import { ToDo, ToDoGroup } from '@nx/data';
 import { Observable } from 'rxjs';
+
+import { ToDoFacade } from './+state/to-do.facade';
 
 @Component({
   selector: 'nx-root',
@@ -10,13 +11,17 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   title = 'angularapp';
-  todos: Observable<ToDo[]> = this.toDoFacade.allToDo$;
+  doGroup: Observable<ToDoGroup> = this.toDoFacade.doGroup$;
+  scheduleGroup: Observable<ToDoGroup> = this.toDoFacade.scheduleGroup$;
+  delegateGroup: Observable<ToDoGroup> = this.toDoFacade.delegateGroup$;
+  eliminateGroup: Observable<ToDoGroup> = this.toDoFacade.eliminateGroup$;
+  group: Observable<ToDoGroup> = this.toDoFacade.doGroup$;
 
   constructor(private toDoFacade: ToDoFacade) {
     this.toDoFacade.loadAll();
   }
 
-  addTodo(): void {
-    this.toDoFacade.addTodo();
+  addTodo(event: ToDo): void {
+    this.toDoFacade.addTodo(event);
   }
 }

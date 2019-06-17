@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MatrixElementComponent } from './matrix-element.component';
+import { ToDoGroupComponent } from './to-do-group.component';
 
-describe('MatrixElementComponent', () => {
-  let component: MatrixElementComponent;
-  let fixture: ComponentFixture<MatrixElementComponent>;
+describe('ToDoGroupComponent', () => {
+  let component: ToDoGroupComponent;
+  let fixture: ComponentFixture<ToDoGroupComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MatrixElementComponent ]
+      declarations: [ ToDoGroupComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MatrixElementComponent);
+    fixture = TestBed.createComponent(ToDoGroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

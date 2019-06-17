@@ -1,5 +1,5 @@
 import { ToDoAction, ToDoActionTypes } from './to-do.actions';
-import { ToDo } from '@nx/data';
+import { ToDo, ToDoGroup } from '@nx/data';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
 export const TODO_FEATURE_KEY = 'toDo';
@@ -12,13 +12,13 @@ export const TODO_FEATURE_KEY = 'toDo';
  *  Note: replace if already defined in another module
  */
 
-export interface ToDoState extends EntityState<ToDo> {
+export interface ToDoState extends EntityState<ToDoGroup> {
   selectedId?: string | number; // which ToDo record has been selected
   loaded: boolean; // has the ToDo list been loaded
   error?: any; // last none error (if any)
 }
 
-export const adapter: EntityAdapter<ToDo> = createEntityAdapter<ToDo>();
+export const adapter: EntityAdapter<ToDoGroup> = createEntityAdapter<ToDoGroup>();
 
 export interface ToDoPartialState {
   readonly [TODO_FEATURE_KEY]: ToDoState;
@@ -40,7 +40,10 @@ export function toDoReducer(
       break;
     }
     case ToDoActionTypes.ToDoLoaded: {
-      state = adapter.addAll(action.payload, { ...state, loaded: true });
+      state = { ...state,
+        entities: action.payload,
+        ids: Object.keys(action.payload),
+        loaded: true };
       break;
     }
   }

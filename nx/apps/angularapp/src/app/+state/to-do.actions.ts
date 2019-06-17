@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { ToDo } from '@nx/data';
+import { ToDo, ToDoGroup, ToDoGroups } from '@nx/data';
 
 export enum ToDoActionTypes {
   AddToDo = '[ToDo] Add ToDo',
@@ -11,6 +11,7 @@ export enum ToDoActionTypes {
 
 export class AddToDo implements Action {
   readonly type = ToDoActionTypes.AddToDo;
+  constructor(public payload: ToDo) {}
 }
 
 export class AddToDoSuccess implements Action {
@@ -28,7 +29,7 @@ export class ToDoLoadError implements Action {
 
 export class ToDoLoaded implements Action {
   readonly type = ToDoActionTypes.ToDoLoaded;
-  constructor(public payload: ToDo[]) {}
+  constructor(public payload: ToDoGroups) {}
 }
 
 export type ToDoAction = LoadToDo | ToDoLoaded | ToDoLoadError;

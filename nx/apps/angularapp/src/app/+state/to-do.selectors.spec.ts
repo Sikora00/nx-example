@@ -29,7 +29,7 @@ describe('ToDo Selectors', () => {
 
   describe('ToDo Selectors', () => {
     it('getAllToDo() should return the list of ToDo', () => {
-      const results = toDoQuery.getAllToDo(storeState);
+      const results = toDoQuery.getAllToDoGroups(storeState);
       const selId = getToDoId(results[1]);
 
       expect(results.length).toBe(3);

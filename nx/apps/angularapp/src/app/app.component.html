@@ -6,19 +6,19 @@
   <div class="matrix__column"><h2>Less urgent</h2></div>
   <div class="matrix__column matrix__column--vertical"><h2>Important</h2></div>
 
-  <nx-matrix-element id="do" [todos]="todos" (addToDo)="addTodo($event)">
-  </nx-matrix-element>
-  <nx-matrix-element id="schedule" [todos]="todos" (addToDo)="addTodo($event)">
-  </nx-matrix-element>
+  <nx-to-do-group id="do" [group]="doGroup | async" (addToDo)="addTodo($event)">
+  </nx-to-do-group>
+  <nx-to-do-group id="schedule" [group]="scheduleGroup | async" (addToDo)="addTodo($event)">
+  </nx-to-do-group>
 
   <div class="matrix__column matrix__column--vertical">
     <h2>Less Important</h2>
   </div>
 
-  <nx-matrix-element id="delegate" [todos]="todos" (addToDo)="addTodo($event)">
-  </nx-matrix-element>
-  <nx-matrix-element id="eliminate" [todos]="todos" (addToDo)="addTodo($event)">
-  </nx-matrix-element>
+  <nx-to-do-group id="delegate" [group]="delegateGroup | async" (addToDo)="addTodo($event)">
+  </nx-to-do-group>
+  <nx-to-do-group id="eliminate" [group]="eliminateGroup | async" (addToDo)="addTodo($event)">
+  </nx-to-do-group>
 </div>
 
 <router-outlet></router-outlet>

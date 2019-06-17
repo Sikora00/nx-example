@@ -1,22 +1,33 @@
 import { Injectable } from '@nestjs/common';
-import { ToDo } from '@nx/data';
+import { ToDo, ToDoGroup, ToDoGroupId, ToDoGroups } from '@nx/data';
 import { uuid } from '@nx/utils';
 
 @Injectable()
 export class AppService {
-  todos: ToDo[] = [
-    { id: uuid(), title: 'Todo 1' },
-    { id: uuid(), title: 'Todo 2' }
-  ];
+  groups: Map<ToDoGroupId, ToDoGroup> = new Map();
 
-  getData(): ToDo[] {
-    return this.todos;
+  constructor() {
+    this.groups.set(ToDoGroupId.do, {
+      id: ToDoGroupId.do,
+      toDo: [{ id: uuid(), title: 'Todo 1' }]
+    });
+    this.groups.set(ToDoGroupId.schedule, {
+      id: ToDoGroupId.schedule,
+      toDo: [{ id: uuid(), title: 'Todo 2' }]
+    });
+    this.groups.set(ToDoGroupId.delegate, {id: ToDoGroupId.delegate, toDo: []})
+    this.groups.set(ToDoGroupId.elimminate, {id: ToDoGroupId.elimminate, toDo: []})
   }
 
-  addTodo(): void {
-    this.todos.push({
-      id: uuid(),
-      title: `New todo ${Math.floor(Math.random() * 1000)}`
-    });
+  getData(): Map<ToDoGroupId, ToDoGroup> {
+    return this.groups;
+  }
+
+  addToDo(toDo: ToDo): void {
+    const group = this.groups.get(toDo.group);
+    if (group) {
+      group.toDo.push(toDo);
+      this.groups.set(toDo.group, group);
+    }
   }
 }

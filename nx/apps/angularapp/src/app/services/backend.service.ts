@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ToDo } from '@nx/data';
+import { ToDo, ToDoGroups } from '@nx/data';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +9,11 @@ import { ToDo } from '@nx/data';
 export class BackendService {
   constructor(private http: HttpClient) {}
 
-  addToDo(): Observable<Object> {
-    return this.http.post('/api/addTodo', {});
+  addToDo(item: ToDo): Observable<Object> {
+    return this.http.post('/api/addTodo', item);
   }
 
-  fetchTodo(): Observable<ToDo[]> {
-    return this.http.get<ToDo[]>('/api/todos');
+  fetchTodo(): Observable<ToDoGroups> {
+    return this.http.get<ToDoGroups>('/api/todos');
   }
 }

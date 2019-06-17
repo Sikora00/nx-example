@@ -1,18 +1,19 @@
-import { Controller, Get, Post } from '@nestjs/common';
-
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { mapToObj } from '@nx/utils';
 import { AppService } from './app.service';
+import { ToDo } from '@nx/data';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('todos')
-  getData() {
-    return this.appService.getData();
+  getData(): any {
+    return mapToObj(this.appService.getData());
   }
 
   @Post('addTodo')
-  addTodo() {
-    return this.appService.addTodo();
+  addTodo(@Body() todo: ToDo): any {
+    return this.appService.addToDo(todo);
   }
 }

@@ -3,7 +3,7 @@
     <div class="matrix__element__list-wrapper">
       <div class="matrix__element__list">
         <ul>
-          <li *ngFor="let t of (todos | async)" class="todo">{{ t.title }}</li>
+          <li *ngFor="let t of group?.toDo" class="todo">{{ t.title }}</li>
         </ul>
       </div>
     </div>

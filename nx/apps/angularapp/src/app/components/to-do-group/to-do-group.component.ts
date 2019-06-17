@@ -1,27 +1,27 @@
 import {
   Component,
   OnInit,
+  ElementRef,
+  ViewChild,
   Input,
   Output,
-  EventEmitter,
-  ViewChild,
-  ElementRef
+  EventEmitter
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ToDo } from '@nx/data';
+import { ToDoGroup, ToDo } from '@nx/data';
 import { uuid } from '@nx/utils';
 
 @Component({
-  selector: 'nx-matrix-element',
-  templateUrl: './matrix-element.component.html',
-  styleUrls: ['./matrix-element.component.scss']
+  selector: 'nx-to-do-group',
+  templateUrl: './to-do-group.component.html',
+  styleUrls: ['./to-do-group.component.scss']
 })
-export class MatrixElementComponent {
+export class ToDoGroupComponent {
   @ViewChild('addTaskInputElement', { static: true })
   addTaskInput: ElementRef<HTMLInputElement>;
 
   @Input()
-  todos: Observable<ToDo[]>;
+  group: ToDoGroup;
 
   @Output()
   addToDo: EventEmitter<ToDo> = new EventEmitter<ToDo>();
@@ -29,10 +29,8 @@ export class MatrixElementComponent {
   constructor() {}
 
   addTask(value: string): void {
-    console.log(value)
     if (value) {
-      console.log(this.addTaskInput);
-      this.addToDo.emit({ id: uuid(), title: value });
+      this.addToDo.emit({ id: uuid(), title: value, group: this.group.id });
       this.addTaskInput.nativeElement.value = '';
     }
   }

@@ -21,7 +21,7 @@ export class ToDoEffects {
     ToDoActionTypes.AddToDo,
     {
       run: (action: AddToDo, state: ToDoPartialState) => {
-        return this.backend.addToDo().pipe(map(created => new LoadToDo()));
+        return this.backend.addToDo(action.payload).pipe(map(created => new LoadToDo()));
       },
       onError: (a: AddToDo, e: any) => null
     }
