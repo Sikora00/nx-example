@@ -1,0 +1,19 @@
+<div class="matrix__element">
+  <div class="matrix__element__content">
+    <div class="matrix__element__list-wrapper">
+      <div class="matrix__element__list">
+        <ul>
+          <li *ngFor="let t of (todos | async)" class="todo">{{ t.title }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="matrix__element__add-new-task">
+      <span>+</span>
+      <input #addTaskInputElement
+        (keyup.enter)="addTask(addTaskInputElement.value)"
+        type="text"
+        placeholder="New task"
+      />
+    </div>
+  </div>
+</div>

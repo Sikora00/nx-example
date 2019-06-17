@@ -1,31 +1,24 @@
 <eisenhower-matrix-header></eisenhower-matrix-header>
 
-<div class='matrix'>
-  <div class='matrix-column' id='do'>
-    <ul>
-      <li *ngFor="let t of (todos | async)" class="todo">{{ t.title }}</li>
-    </ul>
+<div class="matrix">
+  <div></div>
+  <div class="matrix__column"><h2>Urgent</h2></div>
+  <div class="matrix__column"><h2>Less urgent</h2></div>
+  <div class="matrix__column matrix__column--vertical"><h2>Important</h2></div>
+
+  <nx-matrix-element id="do" [todos]="todos" (addToDo)="addTodo($event)">
+  </nx-matrix-element>
+  <nx-matrix-element id="schedule" [todos]="todos" (addToDo)="addTodo($event)">
+  </nx-matrix-element>
+
+  <div class="matrix__column matrix__column--vertical">
+    <h2>Less Important</h2>
   </div>
 
-  <div class='matrix-column' id='schedule'>
-    <ul>
-      <li *ngFor="let t of (todos | async)" class="todo">{{ t.title }}</li>
-    </ul>
-  </div>
-
-  <div class='matrix-column' id='delegate'>
-    <ul>
-      <li *ngFor="let t of (todos | async)" class="todo">{{ t.title }}</li>
-    </ul>
-  </div>
-
-  <div class='matrix-column' id='eliminate'>
-    <ul>
-      <li *ngFor="let t of (todos | async)" class="todo">{{ t.title }}</li>
-    </ul>
-  </div>
+  <nx-matrix-element id="delegate" [todos]="todos" (addToDo)="addTodo($event)">
+  </nx-matrix-element>
+  <nx-matrix-element id="eliminate" [todos]="todos" (addToDo)="addTodo($event)">
+  </nx-matrix-element>
 </div>
-
-<button id="add-todo" (click)="addTodo()">Add Todo</button>
 
 <router-outlet></router-outlet>
