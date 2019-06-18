@@ -1,13 +1,8 @@
 <li>
-  <label class="pure-material-checkbox">
-    <input
-      #checkbox
-      type="checkbox"
-      [checked]="task.done"
-      (onClick)="onCheck()"
-    />
-    <span [ngClass]="{ done: task.done }" class="task__title">{{
-      task.title
-    }}</span>
-  </label>
+  <material-checkbox
+    #checkbox
+    [ngClass]="{ done: task.done }"
+    [checked]="task.done"
+    [title]="task.title"
+  ></material-checkbox>
 </li>
