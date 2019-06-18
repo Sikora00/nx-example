@@ -52,9 +52,7 @@ export class AppService {
 
   updateToDo(toDo: ToDo): void {
     const group = this.groups.get(toDo.group);
-    console.log(toDo);
     if (group) {
-      console.log(toDo);
       group.toDo = group.toDo.map((tD: ToDo) => {
         if (toDo.id === tD.id) {
           return toDo;
