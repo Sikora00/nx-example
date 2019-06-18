@@ -1,5 +1,5 @@
 import { toDoQuery } from './to-do.selectors';
-import { ToDo } from '@nx/data';
+import { ToDo, ToDoGroupId } from '@nx/data';
 
 describe('ToDo Selectors', () => {
   const ERROR_MSG = 'No Error Available';
@@ -10,7 +10,9 @@ describe('ToDo Selectors', () => {
   beforeEach(() => {
     const createToDo = (id: string, title = ''): ToDo => ({
       id,
-      title: name || `name-${id}`
+      title: name || `name-${id}`,
+      done: false,
+      group: ToDoGroupId.do
     });
     const ids = ['AAA', 'BBB', 'CCC'];
     storeState = {

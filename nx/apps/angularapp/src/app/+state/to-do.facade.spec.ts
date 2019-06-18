@@ -4,13 +4,14 @@ import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
 import { NxModule } from '@nrwl/angular';
 import { readFirst } from '@nrwl/angular/testing';
-import { ToDo } from '@nx/data';
+import { ToDo, ToDoGroupId } from '@nx/data';
 
 import { ToDoLoaded } from './to-do.actions';
 import { ToDoEffects } from './to-do.effects';
 import { ToDoFacade } from './to-do.facade';
 import { initialState, toDoReducer, ToDoState } from './to-do.reducer';
 import { HttpClientModule } from '@angular/common/http';
+import { SpecUtils } from '../utils/spec.utils';
 
 interface TestSchema {
   toDo: ToDoState;
@@ -19,14 +20,6 @@ interface TestSchema {
 describe('ToDoFacade', () => {
   let facade: ToDoFacade;
   let store: Store<TestSchema>;
-  let createToDo;
-
-  beforeEach(() => {
-    createToDo = (id: string, title = ''): ToDo => ({
-      id,
-      title: title || `title-${id}`
-    });
-  });
 
   describe('used in NgModule', () => {
     beforeEach(() => {
@@ -91,12 +84,14 @@ describe('ToDoFacade', () => {
         expect(list.length).toBe(0);
         expect(isLoaded).toBe(false);
 
-        store.dispatch(new ToDoLoaded([createToDo('AAA'), createToDo('BBB')]));
+        store.dispatch(
+          new ToDoLoaded(SpecUtils.createToDoGroups())
+        );
 
         list = await readFirst(facade.allToDo$);
         isLoaded = await readFirst(facade.loaded$);
 
-        expect(list.length).toBe(2);
+        expect(list.length).toBe(4);
         expect(isLoaded).toBe(true);
 
         done();

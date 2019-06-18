@@ -1,18 +1,15 @@
-import { TestBed, async } from '@angular/core/testing';
-import { AppComponent } from './app.component';
-import { RouterTestingModule } from '@angular/router/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { ToDoFacade } from './+state/to-do.facade';
-import { NxModule } from '@nrwl/angular';
-import { StoreModule } from '@ngrx/store';
-import { toDoReducer, initialState as toDoInitialState } from './+state/to-do.reducer';
-import { environment } from '../environments/environment';
-import { storeFreeze } from 'ngrx-store-freeze';
-import { ToDoEffects } from './+state/to-do.effects';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { async, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { StoreModule } from '@ngrx/store';
+import { NxModule } from '@nrwl/angular';
+
+import { ToDoEffects } from './+state/to-do.effects';
+import { ToDoFacade } from './+state/to-do.facade';
+import { initialState as toDoInitialState, toDoReducer } from './+state/to-do.reducer';
+import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {

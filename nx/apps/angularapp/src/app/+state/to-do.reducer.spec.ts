@@ -1,27 +1,18 @@
+import { SpecUtils } from '../utils/spec.utils';
 import { ToDoLoaded } from './to-do.actions';
-import { ToDoState, initialState, toDoReducer } from './to-do.reducer';
-import { ToDo } from '@nx/data';
+import { initialState, toDoReducer, ToDoState } from './to-do.reducer';
+import { ToDoGroupId } from '@nx/data';
 
 describe('ToDo Reducer', () => {
-  let createToDo;
-
-  beforeEach(() => {
-    createToDo = (id: string, title = ''): ToDo => ({
-      id,
-       title: title || `name-${id}`
-    });
-  });
-
   describe('valid ToDo actions ', () => {
     it('should return set the list of known ToDo', () => {
-      const toDos = [createToDo('PRODUCT-AAA'), createToDo('PRODUCT-zzz')];
-      const action = new ToDoLoaded(toDos);
+      const action = new ToDoLoaded(SpecUtils.createToDoGroups());
       const state: ToDoState = toDoReducer(initialState, action);
-      const selId = 'PRODUCT-zzz';
+      const selId = ToDoGroupId.do;
 
       expect(state.loaded).toBe(true);
-      expect(state.ids.length).toBe(2);
-      expect(Object.keys(state.entities).length).toBe(2);
+      expect(state.ids.length).toBe(4);
+      expect(Object.keys(state.entities).length).toBe(4);
       expect(state.entities[selId]).toBeTruthy();
     });
   });

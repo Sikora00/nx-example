@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToDoGroupComponent } from './to-do-group.component';
+import { TaskComponent } from '../task/task.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('ToDoGroupComponent', () => {
   let component: ToDoGroupComponent;
@@ -8,7 +10,9 @@ describe('ToDoGroupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ToDoGroupComponent ]
+      declarations: [ ToDoGroupComponent, TaskComponent ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
     })
     .compileComponents();
   }));
