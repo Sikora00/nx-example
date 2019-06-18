@@ -10,6 +10,7 @@
 }
 .to-do-group {
   color: #fffef9;
+  min-height: 15em;
 }
 .to-do-group__title {
   padding: 20px 0 0 20px;
@@ -34,6 +35,7 @@
 
 .to-do-group__list-wrapper {
   height: 70%;
+  min-height: 9em;
   position: relative;
   overflow: hidden;
 }

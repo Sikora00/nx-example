@@ -9,7 +9,6 @@
       font-family: 'Nunito Sans', sans-serif;
       font-size: 52px;
       margin: auto;
-      width: 50%;
       text-align: center;
     }
   }
@@ -24,7 +23,7 @@
   #schedule {
     .to-do-group {
       background-color: #4488ef;
-    --pure-material-primary-rgb: #005cbc    ;
+      --pure-material-primary-rgb: #005cbc;
     }
   }
 
@@ -46,9 +45,20 @@
 .matrix {
   width: 100%;
   display: grid;
-  grid-template: 40px 1fr 1fr / 40px 1fr 1fr;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr;
   gap: 15px 15px;
   height: calc(100vh - 200px);
+}
+@media (min-width: 620px) {
+  .matrix {
+    grid-template: 40px 1fr 1fr / 40px 1fr 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .matrix__column {
+    display: none;
+  }
 }
 
 .matrix__column {
