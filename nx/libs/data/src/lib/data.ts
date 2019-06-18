@@ -9,6 +9,7 @@ export interface ToDo {
 
 export interface ToDoGroup {
   toDo: ToDo[];
+  readonly title: string;
   readonly id: ToDoGroupId;
 }
 

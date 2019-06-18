@@ -4,7 +4,7 @@ import { ToDo } from '@nx/data';
 @Component({
   selector: 'nx-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements AfterViewInit{
   @ViewChild('checkbox', { static: false })

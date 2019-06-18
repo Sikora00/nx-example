@@ -9,12 +9,14 @@ export class AppService {
   constructor() {
     this.groups.set(ToDoGroupId.do, {
       id: ToDoGroupId.do,
+      title: 'Do',
       toDo: [
         { id: uuid(), done: false, title: 'Todo 1', group: ToDoGroupId.do }
       ]
     });
     this.groups.set(ToDoGroupId.schedule, {
       id: ToDoGroupId.schedule,
+      title: 'Schedule',
       toDo: [
         {
           id: uuid(),
@@ -26,10 +28,12 @@ export class AppService {
     });
     this.groups.set(ToDoGroupId.delegate, {
       id: ToDoGroupId.delegate,
+      title: 'Delegate',
       toDo: []
     });
     this.groups.set(ToDoGroupId.elimminate, {
       id: ToDoGroupId.elimminate,
+      title: 'Eliminate',
       toDo: []
     });
   }

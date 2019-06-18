@@ -35,10 +35,6 @@ export function toDoReducer(
   action: ToDoAction
 ): ToDoState {
   switch (action.type) {
-    case ToDoActionTypes.LoadToDo: {
-      state = adapter.removeAll({ ...state, loaded: false });
-      break;
-    }
     case ToDoActionTypes.ToDoLoaded: {
       state = { ...state,
         entities: action.payload,

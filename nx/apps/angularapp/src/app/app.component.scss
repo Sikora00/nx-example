@@ -1,4 +1,7 @@
 ::ng-deep {
+  h2 {
+    font-family: 'Nunito Sans', sans-serif;
+  }
   eisenhower-matrix-header {
     h1 {
       color: #666666;
@@ -12,26 +15,30 @@
   }
 
   #do {
-    .matrix__element {
+    .to-do-group {
       background-color: #99cb1c;
     }
+    --pure-material-primary-rgb: #669a00;
   }
 
   #schedule {
-    .matrix__element {
+    .to-do-group {
       background-color: #4488ef;
+    --pure-material-primary-rgb: #005cbc    ;
     }
   }
 
   #delegate {
-    .matrix__element {
+    .to-do-group {
       background-color: #f5a932;
+      --pure-material-primary-rgb: #bd7a00;
     }
   }
 
   #eliminate {
-    .matrix__element {
+    .to-do-group {
       background-color: #cc3b28;
+      --pure-material-primary-rgb: #940000;
     }
   }
 }

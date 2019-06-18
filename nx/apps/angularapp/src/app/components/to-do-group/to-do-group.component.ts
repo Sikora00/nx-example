@@ -8,7 +8,7 @@ import {
   EventEmitter
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ToDoGroup, ToDo } from '@nx/data';
+import { ToDoGroup, ToDo, ToDoGroupId } from '@nx/data';
 import { uuid } from '@nx/utils';
 import { toDoQuery } from '../../+state/to-do.selectors';
 
@@ -22,13 +22,14 @@ export class ToDoGroupComponent {
   addTaskInput: ElementRef<HTMLInputElement>;
 
   @Input()
-  group: ToDoGroup;
+  group: ToDoGroup | undefined;
 
   @Output()
   addToDo: EventEmitter<ToDo> = new EventEmitter<ToDo>();
-
   @Output()
   updateToDo = new EventEmitter<ToDo>();
+
+  groupIds = ToDoGroupId;
 
   constructor() {}
 
@@ -44,8 +45,11 @@ export class ToDoGroupComponent {
     }
   }
 
-
   onUpdateToDo(event: ToDo): void {
     this.updateToDo.emit(event);
+  }
+
+  trackToDoBy(index: number, toDo: ToDo): string {
+    return toDo.id;
   }
 }

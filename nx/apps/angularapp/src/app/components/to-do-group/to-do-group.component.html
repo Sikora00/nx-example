@@ -1,10 +1,27 @@
-<div class="matrix__element">
-  <div class="matrix__element__content">
-    <div class="matrix__element__list-wrapper">
-      <div class="matrix__element__list">
+<div class="to-do-group">
+  <div class="to-do-group__content">
+    <div *ngIf="group" class="to-do-group__title">
+      <div class="to-do-group__title__wrapper">
+        <div class="to-do-group__icon" [ngSwitch]="group.id">
+          <i class="material-icons" *ngSwitchCase="groupIds.do">alarm_on</i>
+          <i class="material-icons" *ngSwitchCase="groupIds.schedule"
+            >calendar_today</i
+          >
+          <i class="material-icons" *ngSwitchCase="groupIds.delegate"
+            >how_to_reg</i
+          >
+          <i class="material-icons" *ngSwitchCase="groupIds.elimminate"
+            >remove_circle_outline</i
+          >
+        </div>
+        <h2>{{ group.title }}</h2>
+      </div>
+    </div>
+    <div class="to-do-group__list-wrapper">
+      <div class="to-do-group__list">
         <ul>
           <nx-task
-            *ngFor="let t of group?.toDo"
+            *ngFor="let t of group?.toDo; trackToDoBy"
             [task]="t"
             (doTask)="onUpdateToDo($event)"
           >
@@ -12,7 +29,7 @@
         </ul>
       </div>
     </div>
-    <div class="matrix__element__add-new-task">
+    <div class="to-do-group__add-new-task">
       <span>+</span>
       <input
         #addTaskInputElement

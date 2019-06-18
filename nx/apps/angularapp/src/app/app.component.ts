@@ -14,7 +14,7 @@ export class AppComponent {
   doGroup: Observable<ToDoGroup> = this.toDoFacade.doGroup$;
   scheduleGroup: Observable<ToDoGroup> = this.toDoFacade.scheduleGroup$;
   delegateGroup: Observable<ToDoGroup> = this.toDoFacade.delegateGroup$;
-  eliminateGroup: Observable<ToDoGroup> = this.toDoFacade.eliminatePPPGroup$;
+  eliminateGroup: Observable<ToDoGroup> = this.toDoFacade.eliminateGroup$;
   group: Observable<ToDoGroup> = this.toDoFacade.doGroup$;
 
   constructor(private toDoFacade: ToDoFacade) {

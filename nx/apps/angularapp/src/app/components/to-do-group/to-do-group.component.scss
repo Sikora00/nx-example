@@ -1,26 +1,44 @@
-.matrix__element:hover {
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
-
-.matrix__element {
+.to-do-group {
   height: 100%;
   border-radius: 25px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
   position: relative;
 }
 
-.matrix__element__content {
+.to-do-group__content {
   height: 100%;
 }
+.to-do-group {
+  color: #fffef9;
+}
+.to-do-group__title {
+  padding: 20px 0 0 20px;
+  i {
+    position: absolute;
+    top: 25%;
+  }
+  h2 {
+    margin: 0;
+  }
+  & __wrapper {
+    position: relative;
+  }
+}
 
-.matrix__element__list-wrapper {
-  height: 80%;
-  padding-top: 20px;
+.to-do-group__icon {
+  position: relative;
+  float: left;
+  min-height: 1em;
+  width: 2em;
+}
+
+.to-do-group__list-wrapper {
+  height: 70%;
   position: relative;
   overflow: hidden;
 }
 
-.matrix__element__list {
+.to-do-group__list {
   position: absolute;
   overflow-y: scroll;
   right: -17px;
@@ -32,15 +50,16 @@
   }
 }
 
-.matrix__element__add-new-task {
+.to-do-group__add-new-task {
   input {
     background: transparent;
     border: none;
     outline: none;
-    font-size: 16px;
-    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
     padding-left: 5px;
-    width: 90%
+    width: 90%;
+    color: white;
   }
   span {
     font-weight: 900;
@@ -49,6 +68,6 @@
   padding-left: 22px;
   padding-top: 5px;
   ::placeholder {
-    color: #333;
+    color: #eee;
   }
 }
