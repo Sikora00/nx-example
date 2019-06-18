@@ -1,0 +1,66 @@
+h2 {
+  font-family: 'Nunito Sans', sans-serif;
+}
+eisenhower-matrix-header {
+  h1 {
+    color: #666666;
+    font-weight: 500;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 52px;
+    margin: auto;
+    text-align: center;
+  }
+}
+
+#do {
+  background-color: #99cb1c;
+  --pure-material-primary-rgb: #669a00;
+}
+
+#schedule {
+  background-color: #4488ef;
+  --pure-material-primary-rgb: #005cbc;
+}
+
+#delegate {
+  background-color: #f5a932;
+  --pure-material-primary-rgb: #bd7a00;
+}
+
+#eliminate {
+  background-color: #cc3b28;
+  --pure-material-primary-rgb: #940000;
+}
+
+.matrix {
+  width: 100%;
+  display: grid;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr;
+  gap: 15px 15px;
+  height: calc(100vh - 200px);
+}
+@media (min-width: 620px) {
+  .matrix {
+    grid-template: 40px 1fr 1fr / 40px 1fr 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .matrix__column {
+    display: none;
+  }
+}
+
+.matrix__column {
+  text-align: center;
+  vertical-align: middle;
+  line-height: 40px;
+  h2 {
+    margin: 0;
+  }
+  &--vertical {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+}

@@ -73,7 +73,7 @@
             "onlyDependOnLibsWithTags": [
               "react:core",
               "shared:front",
-              "shared:typerscript"
+              "shared:typescript"
             ]
           },
           {

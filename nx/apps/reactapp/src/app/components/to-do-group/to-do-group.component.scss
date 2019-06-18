@@ -1,0 +1,76 @@
+.to-do-group {
+  height: 100%;
+  border-radius: 25px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+}
+
+.to-do-group__content {
+  height: 100%;
+}
+.to-do-group {
+  color: #fffef9;
+  min-height: 15em;
+}
+.to-do-group__title {
+  padding: 20px 0 0 20px;
+  svg {
+    font-size: 1.5em;
+    position: absolute;
+    top: 25%;
+  }
+  h2 {
+    margin: 0;
+  }
+  & __wrapper {
+    position: relative;
+  }
+}
+
+.to-do-group__icon {
+  position: relative;
+  float: left;
+  min-height: 1em;
+  width: 2em;
+}
+
+.to-do-group__list-wrapper {
+  height: 70%;
+  min-height: 9em;
+  position: relative;
+  overflow: hidden;
+}
+
+.to-do-group__list {
+  position: absolute;
+  overflow-y: scroll;
+  right: -17px;
+  left: 20px;
+  height: 100%;
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+}
+
+.to-do-group__add-new-task {
+  input {
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    padding-left: 5px;
+    width: 90%;
+    color: white;
+  }
+  span {
+    font-weight: 900;
+    font-family: 'Lucida Grande', tahoma, arial, sans-serif;
+  }
+  padding-left: 22px;
+  padding-top: 5px;
+  ::placeholder {
+    color: #eee;
+  }
+}

@@ -1,0 +1,13 @@
+.done {
+  opacity: 0.6;
+  text-decoration: line-through;
+}
+.done::before,
+.done::after {
+  opacity: 1;
+}
+
+.task__title {
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
