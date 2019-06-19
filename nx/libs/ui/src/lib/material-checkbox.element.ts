@@ -20,14 +20,10 @@ export class MaterialCheckboxElement extends HTMLElement {
 
   connectedCallback(): void {
     this.render();
-    this.checkbox = this.shadowRoot.querySelector('input');
-    this.checkbox.addEventListener('change', event => {
-      this.dispatchEvent(new CustomEvent('checkChange', event));
-    });
   }
 
   render(): void {
-    this.shadowRoot.innerHTML = `
+    this.innerHTML = `
     <style>
     .pure-material-checkbox {
       z-index: 0;
@@ -171,17 +167,18 @@ export class MaterialCheckboxElement extends HTMLElement {
     }
   </style>
   <label class="pure-material-checkbox">
-    <input type="checkbox" ${
-      this.checked ? 'checked' : ''
-    } (onClick)="onCheck()"
+    <input type="checkbox" ${this.checked ? 'checked' : ''}
     />
     <span class="task__title">${this.title}</span>
   </label>
   `;
+    this.checkbox = this.querySelector('input');
+    this.checkbox.addEventListener('change', event => {
+      this.dispatchEvent(new CustomEvent('checkChange', event));
+    });
   }
   constructor() {
     super();
-    const shadowRoot = this.attachShadow({ mode: 'open' });
   }
   static get observedAttributes(): string[] {
     return [Attributes.title, Attributes.checked];

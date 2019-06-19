@@ -1,6 +1,8 @@
 import { ToDo } from '@nx/data';
 import { MaterialCheckboxElement } from '@nx/ui';
 import React from 'react';
+import './task.component.scss';
+
 interface Props {
   task: ToDo;
   onTaskDoneChange: (task: ToDo) => void;
@@ -24,7 +26,7 @@ export default class TaskComponent extends React.Component<Props, {}> {
   }
   render(): any {
     return (
-      <li>
+      <li className={this.props.task.done && 'done'}>
         <material-checkbox
           ref={this.checkboxRef}
           checked={this.props.task.done}
