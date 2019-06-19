@@ -1,8 +1,8 @@
 import './to-do-group.component.scss';
 
-import { ToDo, ToDoGroup } from '@nx/data';
+import { ToDo, ToDoGroup, ToDoGroupId } from '@nx/data';
 import React from 'react';
-import { MdAlarmOn } from 'react-icons/md';
+import { MdAlarmOn, MdEvent, MdRemoveCircleOutline, MdPersonAdd } from 'react-icons/md';
 
 import TaskComponent from '../task/task.component';
 import { uuid } from '@nx/utils';
@@ -36,14 +36,26 @@ export default class ToDoGroupComponent extends React.Component<Props, {}> {
       this.inputRef.current.value = '';
     }
   }
-  render(): any {
+  getIconJSX(): JSX.Element {
+    switch (this.props.group.id) {
+      case ToDoGroupId.do:
+        return <MdAlarmOn />;
+      case ToDoGroupId.schedule:
+        return <MdEvent />;
+      case ToDoGroupId.delegate:
+        return <MdPersonAdd />;
+      case ToDoGroupId.elimminate:
+        return <MdRemoveCircleOutline />;
+    }
+  }
+  render(): JSX.Element {
     return (
       <div id={this.props.id} className="to-do-group">
         <div className="to-do-group__content">
           <div className="to-do-group__title">
             <div className="to-do-group__title__wrapper">
               <div className="to-do-group__icon">
-                <MdAlarmOn />
+                {this.props.group && this.getIconJSX()}
               </div>
               <h2>{this.props.group && this.props.group.title}</h2>
             </div>
