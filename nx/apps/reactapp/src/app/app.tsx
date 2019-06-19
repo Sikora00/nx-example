@@ -1,49 +1,41 @@
 import './app.scss';
 
-import { ToDo, ToDoGroupId, ToDoGroups } from '@nx/data';
+import { ToDo, ToDoGroupId, ToDoGroups, ToDoGroup } from '@nx/data';
 import { uuid } from '@nx/utils';
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import ToDoGroupComponent from './components/to-do-group/to-do-group.component';
 
-export class App extends React.Component {
-  doGroup = {};
-  groups = this.createToDoGroups();
+interface State {
+  groups: ToDoGroups;
+}
+export class App extends React.Component<{}, State> {
+  readonly backendUrl = 'http://localhost:3333';
+  constructor(props: {}) {
+    super(props);
 
-  createToDo(id = uuid(), title = ''): ToDo {
-    return {
-      id,
-      title: title || `title-${id}`,
-      done: false,
-      group: ToDoGroupId.do
-    };
+    this.onTaskChange = this.onTaskChange.bind(this);
   }
 
-  createToDoGroups(): ToDoGroups {
-    return {
-      [ToDoGroupId.do]: {
-        title: 'Do',
-        id: ToDoGroupId.do,
-        toDo: [this.createToDo('AAA'), this.createToDo('BBB')]
-      },
-      [ToDoGroupId.schedule]: {
-        title: 'Schedule',
-        id: ToDoGroupId.schedule,
-        toDo: [this.createToDo()]
-      },
-      [ToDoGroupId.delegate]: {
-        title: 'Delegate',
-        id: ToDoGroupId.delegate,
-        toDo: []
-      },
-      [ToDoGroupId.elimminate]: {
-        title: 'Eliminate',
-        id: ToDoGroupId.elimminate,
-        toDo: []
-      }
-    };
+  componentDidMount(): void {
+    this.loadToDoGroups();
   }
+
+  async loadToDoGroups(): Promise<void> {
+    const response = await fetch(this.backendUrl + '/api/todos');
+    const groups = await response.json();
+    this.setState({ groups });
+  }
+
+  onTaskChange(task: ToDo): void {
+    fetch(this.backendUrl + '/api/todo', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(task)
+    });
+  }
+
   render(): any {
     return (
       <Router>
@@ -59,20 +51,43 @@ export class App extends React.Component {
           <div className="matrix__column matrix__column--vertical">
             <h2>Important</h2>
           </div>
-          <ToDoGroupComponent group={this.groups[ToDoGroupId.do]} id="do" />
           <ToDoGroupComponent
-            group={this.groups[ToDoGroupId.schedule]}
+            group={
+              this.state &&
+              this.state.groups &&
+              this.state.groups[ToDoGroupId.do]
+            }
+            onTaskDoneChange={this.onTaskChange}
+            id="do"
+          />
+          <ToDoGroupComponent
+            group={
+              this.state &&
+              this.state.groups &&
+              this.state.groups[ToDoGroupId.schedule]
+            }
+            onTaskDoneChange={this.onTaskChange}
             id="schedule"
           />
           <div className="matrix__column matrix__column--vertical">
             <h2>Less Important</h2>
           </div>
           <ToDoGroupComponent
-            group={this.groups[ToDoGroupId.delegate]}
+            group={
+              this.state &&
+              this.state.groups &&
+              this.state.groups[ToDoGroupId.delegate]
+            }
+            onTaskDoneChange={this.onTaskChange}
             id="delegate"
           />
           <ToDoGroupComponent
-            group={this.groups[ToDoGroupId.elimminate]}
+            group={
+              this.state &&
+              this.state.groups &&
+              this.state.groups[ToDoGroupId.elimminate]
+            }
+            onTaskDoneChange={this.onTaskChange}
             id="eliminate"
           />
         </div>
