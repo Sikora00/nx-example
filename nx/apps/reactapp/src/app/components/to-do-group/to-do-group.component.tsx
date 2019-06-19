@@ -1,21 +1,40 @@
-import React from 'react';
 import './to-do-group.component.scss';
+
+import { ToDo, ToDoGroup } from '@nx/data';
+import React from 'react';
 import { MdAlarmOn } from 'react-icons/md';
-import { ToDoGroup, ToDo } from '@nx/data';
+
 import TaskComponent from '../task/task.component';
+import { uuid } from '@nx/utils';
+
 interface Props {
   id: string;
   group: ToDoGroup;
   onTaskDoneChange: (task: ToDo) => void;
+  onAddTask: (task: ToDo) => void;
 }
 export default class ToDoGroupComponent extends React.Component<Props, {}> {
+  inputRef: React.RefObject<HTMLInputElement>;
   constructor(props: Props) {
     super(props);
 
+    this.inputRef = React.createRef();
     this.onTaskDoneChange = this.onTaskDoneChange.bind(this);
+    this.onAddTask = this.onAddTask.bind(this);
   }
   onTaskDoneChange(task: ToDo): void {
     this.props.onTaskDoneChange(task);
+  }
+  onAddTask(e: React.KeyboardEvent<HTMLInputElement>): void {
+    if (e.key === 'Enter') {
+      this.props.onAddTask({
+        id: uuid(),
+        done: false,
+        title: this.inputRef.current.value,
+        group: this.props.group.id
+      });
+      this.inputRef.current.value = '';
+    }
   }
   render(): any {
     return (
@@ -42,6 +61,15 @@ export default class ToDoGroupComponent extends React.Component<Props, {}> {
                   ))}
               </ul>
             </div>
+          </div>
+          <div className="to-do-group__add-new-task">
+            <span>+</span>
+            <input
+              type="text"
+              placeholder="New task"
+              ref={this.inputRef}
+              onKeyDown={this.onAddTask}
+            />
           </div>
         </div>
       </div>

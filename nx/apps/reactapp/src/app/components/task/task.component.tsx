@@ -26,7 +26,7 @@ export default class TaskComponent extends React.Component<Props, {}> {
   }
   render(): any {
     return (
-      <li className={this.props.task.done && 'done'}>
+      <li className={this.props.task.done ? 'done' : ''}>
         <material-checkbox
           ref={this.checkboxRef}
           checked={this.props.task.done}

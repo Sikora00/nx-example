@@ -15,6 +15,7 @@ export class App extends React.Component<{}, State> {
   constructor(props: {}) {
     super(props);
 
+    this.onAddTask = this.onAddTask.bind(this);
     this.onTaskChange = this.onTaskChange.bind(this);
   }
 
@@ -28,12 +29,20 @@ export class App extends React.Component<{}, State> {
     this.setState({ groups });
   }
 
+  onAddTask(task: ToDo): void {
+    fetch(this.backendUrl + '/api/addToDo', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(task)
+    }).then(() => this.loadToDoGroups());
+  }
+
   onTaskChange(task: ToDo): void {
     fetch(this.backendUrl + '/api/todo', {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(task)
-    });
+    }).then(() => this.loadToDoGroups());
   }
 
   render(): any {
@@ -57,6 +66,7 @@ export class App extends React.Component<{}, State> {
               this.state.groups &&
               this.state.groups[ToDoGroupId.do]
             }
+            onAddTask={this.onAddTask}
             onTaskDoneChange={this.onTaskChange}
             id="do"
           />
@@ -66,6 +76,7 @@ export class App extends React.Component<{}, State> {
               this.state.groups &&
               this.state.groups[ToDoGroupId.schedule]
             }
+            onAddTask={this.onAddTask}
             onTaskDoneChange={this.onTaskChange}
             id="schedule"
           />
@@ -78,6 +89,7 @@ export class App extends React.Component<{}, State> {
               this.state.groups &&
               this.state.groups[ToDoGroupId.delegate]
             }
+            onAddTask={this.onAddTask}
             onTaskDoneChange={this.onTaskChange}
             id="delegate"
           />
@@ -87,6 +99,7 @@ export class App extends React.Component<{}, State> {
               this.state.groups &&
               this.state.groups[ToDoGroupId.elimminate]
             }
+            onAddTask={this.onAddTask}
             onTaskDoneChange={this.onTaskChange}
             id="eliminate"
           />
