@@ -2,6 +2,7 @@
   "name": "nx",
   "version": "0.0.0",
   "license": "MIT",
+  "main": "./dist/apps/electron/main.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -24,7 +25,8 @@
     "update:check": "ng update",
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "electron": "ng build --base-href ./  && tsc --p ./apps/electron --outDir ./dist && electron ."
   },
   "private": true,
   "dependencies": {
@@ -36,6 +38,9 @@
     "@angular/platform-browser": "^8.0.0",
     "@angular/platform-browser-dynamic": "^8.0.0",
     "@angular/router": "^8.0.0",
+    "core-js": "^2.5.4",
+    "rxjs": "~6.4.0",
+    "zone.js": "^0.9.1",
     "@nestjs/common": "^6.2.4",
     "@nestjs/core": "^6.2.4",
     "@nestjs/platform-express": "^6.2.4",
@@ -44,15 +49,12 @@
     "@ngrx/router-store": "7.2.0",
     "@ngrx/store": "7.2.0",
     "@nrwl/angular": "^8.1.0",
-    "core-js": "^2.5.4",
     "document-register-element": "1.13.1",
     "react": "16.8.3",
     "react-dom": "16.8.3",
     "react-icons": "^3.7.0",
     "react-router-dom": "5.0.0",
-    "reflect-metadata": "^0.1.12",
-    "rxjs": "~6.4.0",
-    "zone.js": "^0.9.1"
+    "reflect-metadata": "^0.1.12"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.800.0",
@@ -69,6 +71,7 @@
     "@nrwl/react": "8.1.0",
     "@nrwl/web": "8.1.0",
     "@nrwl/workspace": "8.1.0",
+    "@types/electron": "^1.6.10",
     "@types/jest": "24.0.9",
     "@types/node": "~8.9.4",
     "@types/react": "16.8.4",
@@ -76,6 +79,7 @@
     "codelyzer": "~5.0.1",
     "cypress": "~3.3.1",
     "dotenv": "6.2.0",
+    "electron": "^5.0.4",
     "jest": "24.1.0",
     "jest-preset-angular": "^7.1.1",
     "ngrx-store-freeze": "0.2.4",

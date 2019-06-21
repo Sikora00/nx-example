@@ -15,6 +15,9 @@
     "angularapp": {
       "tags": ["angular:core"]
     },
+    "electron": {
+      "tags": ["electron:core"]
+    },
     "reactapp": {
       "tags": ["react:core"]
     },

@@ -350,6 +350,12 @@
           }
         }
       }
+    },
+    "electron": {
+      "root": "apps/angularapp/",
+      "sourceRoot": "apps/angularapp/src",
+      "projectType": "application",
+      "prefix": "nx"
     }
   },
   "cli": {

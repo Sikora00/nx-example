@@ -7,17 +7,19 @@ import { ToDo, ToDoGroups } from '@nx/data';
   providedIn: 'root'
 })
 export class BackendService {
+  readonly backendUrl = 'http://localhost:3333';
+
   constructor(private http: HttpClient) {}
 
   addToDo(item: ToDo): Observable<any> {
-    return this.http.post('/api/addTodo', item);
+    return this.http.post(this.backendUrl + '/api/addTodo', item);
   }
 
   fetchTodo(): Observable<ToDoGroups> {
-    return this.http.get<ToDoGroups>('/api/todos');
+    return this.http.get<ToDoGroups>(this.backendUrl + '/api/todos');
   }
 
   updateToDo(toDo: ToDo): Observable<any> {
-    return this.http.put('api/todo', toDo);
+    return this.http.put(this.backendUrl + '/api/todo', toDo);
   }
 }
