@@ -18,6 +18,9 @@
     "electron": {
       "tags": ["electron:core"]
     },
+    "ionic": {
+      "tags": []
+    },
     "reactapp": {
       "tags": ["react:core"]
     },
