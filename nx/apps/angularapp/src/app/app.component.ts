@@ -10,12 +10,10 @@ import { ToDoFacade } from './+state/to-do.facade';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angularapp';
   doGroup: Observable<ToDoGroup> = this.toDoFacade.doGroup$;
   scheduleGroup: Observable<ToDoGroup> = this.toDoFacade.scheduleGroup$;
   delegateGroup: Observable<ToDoGroup> = this.toDoFacade.delegateGroup$;
   eliminateGroup: Observable<ToDoGroup> = this.toDoFacade.eliminateGroup$;
-  group: Observable<ToDoGroup> = this.toDoFacade.doGroup$;
 
   constructor(private toDoFacade: ToDoFacade) {
     this.toDoFacade.loadAll();

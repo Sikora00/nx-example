@@ -1,3 +1,14 @@
 <ion-app>
-  <eisenhower-matrix-header></eisenhower-matrix-header>
+  <ion-content>
+    <eisenhower-matrix-header></eisenhower-matrix-header>
+    <nx-to-do-groups
+      *ngIf="!!groups"
+      [doGroup]="groups[ToDoGroupId.do]"
+      [scheduleGroup]="groups[ToDoGroupId.schedule]"
+      [delegateGroup]="groups[ToDoGroupId.delegate]"
+      [eliminateGroup]="groups[ToDoGroupId.elimminate]"
+      (addToDo)="onAddTask($event)"
+      (updateToDo)="onTaskChange($event)"
+    ></nx-to-do-groups>
+  </ion-content>
 </ion-app>

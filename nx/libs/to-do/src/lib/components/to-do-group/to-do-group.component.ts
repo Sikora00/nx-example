@@ -10,7 +10,7 @@ import {
 import { Observable } from 'rxjs';
 import { ToDoGroup, ToDo, ToDoGroupId } from '@nx/data';
 import { uuid } from '@nx/utils';
-import { toDoQuery } from '../../+state/to-do.selectors';
+import { toDoQuery } from '../../../../../../apps/angularapp/src/app/+state/to-do.selectors';
 
 @Component({
   selector: 'nx-to-do-group',

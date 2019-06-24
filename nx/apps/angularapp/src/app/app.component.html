@@ -1,44 +1,10 @@
 <eisenhower-matrix-header></eisenhower-matrix-header>
-
-<div class="matrix">
-  <div class="matrix__column"></div>
-  <div class="matrix__column"><h2>Urgent</h2></div>
-  <div class="matrix__column"><h2>Less urgent</h2></div>
-  <div class="matrix__column matrix__column--vertical"><h2>Important</h2></div>
-
-  <nx-to-do-group
-    id="do"
-    [group]="doGroup | async"
-    (addToDo)="addTodo($event)"
-    (updateToDo)="onUpdateToDo($event)"
-  >
-  </nx-to-do-group>
-  <nx-to-do-group
-    id="schedule"
-    [group]="scheduleGroup | async"
-    (addToDo)="addTodo($event)"
-    (updateToDo)="onUpdateToDo($event)"
-  >
-  </nx-to-do-group>
-
-  <div class="matrix__column matrix__column--vertical">
-    <h2>Less Important</h2>
-  </div>
-
-  <nx-to-do-group
-    id="delegate"
-    [group]="delegateGroup | async"
-    (addToDo)="addTodo($event)"
-    (updateToDo)="onUpdateToDo($event)"
-  >
-  </nx-to-do-group>
-  <nx-to-do-group
-    id="eliminate"
-    [group]="eliminateGroup | async"
-    (addToDo)="addTodo($event)"
-    (updateToDo)="onUpdateToDo($event)"
-  >
-  </nx-to-do-group>
-</div>
-
+<nx-to-do-groups
+  [doGroup]="doGroup | async"
+  [scheduleGroup]="scheduleGroup | async"
+  [delegateGroup]="delegateGroup | async"
+  [eliminateGroup]="eliminateGroup | async"
+  (addToDo)="addTodo($event)"
+  (updateToDo)="onUpdateToDo($event)"
+></nx-to-do-groups>
 <router-outlet></router-outlet>

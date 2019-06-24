@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TaskComponent } from './task.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { SpecUtils } from '../../utils/spec.utils';
+import { SpecUtils } from '../../../../../../apps/angularapp/src/app/utils/spec.utils';
 
 describe('TaskComponent', () => {
   let component: TaskComponent;
